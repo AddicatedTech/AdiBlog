@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-16 18:07:31
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-16 19:04:24
+ * @LastEditTime: 2020-11-16 20:49:20
  */
 package com.adi.handler;
 
@@ -25,7 +25,7 @@ public class ControllerExceptionHandler {
 
     @ExceptionHandler(Exception.class) // 标识该方法是可以做异常拦截的 参数为拦截的类对象
     public ModelAndView exceptionHandler(HttpServletRequest request, Exception e) throws Exception {
-        logger.error("Request URL : {},Exception : {}", request.getRequestURL(), e);
+        logger.error("Request URL : {},Exception : {}", request.getRequestURL().toString(), e);
 
         // 判断一下吧 HttpStatus的异常放过不进行拦截
         // 指定如果httpStatus返回不为空，就放行不进行异常拦截，抛出异常让Springboot处理
@@ -34,7 +34,7 @@ public class ControllerExceptionHandler {
         }
 
         ModelAndView mv = new ModelAndView();
-        mv.addObject("url", request.getRequestURL());
+        mv.addObject("url", request.getRequestURL().toString());
         mv.addObject("exception", e);
         mv.setViewName("error/error");
         return mv;
