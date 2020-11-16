@@ -1,0 +1,6 @@
+2020-11-16 16:53:32.574  INFO 25668 --- [restartedMain] com.adi.blog.BlogApplication             : Starting BlogApplication using Java 1.8.0_181 on DESKTOP-JCG0M2F with PID 25668 (D:\代码学习存放\blogBackEnd\target\classes started by 坂上青云 in D:\代码学习存放\blogBackEnd)
+2020-11-16 16:53:32.582  INFO 25668 --- [restartedMain] com.adi.blog.BlogApplication             : The following profiles are active: pro
+2020-11-16 16:53:37.613  WARN 25668 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-16 16:53:38.418  WARN 25668 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2020-11-16 16:53:38.478  WARN 25668 --- [task-1] com.zaxxer.hikari.util.DriverDataSource  : Registered driver with driverClassName=com.mysql.jdbc.Driver was not found, trying direct instantiation.
+2020-11-16 16:53:38.809  INFO 25668 --- [restartedMain] com.adi.blog.BlogApplication             : Started BlogApplication in 7.489 seconds (JVM running for 8.721)
