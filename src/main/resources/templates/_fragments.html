@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="head(title)">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title th:replace="${title}">fragments</title>
+
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"> -->
+    <link rel="stylesheet prefetch"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
+    <link rel="stylesheet" href="../static/css/typo.css" th:href="@{/css/typo.css}">
+    <link rel="stylesheet" href="../static/css/animate.css" th:href="@{/css/animate.css}">
+    <link rel="stylesheet" href="../static/css/semantic.min.css" th:href="@{/css/semantic.min.css}">
+    <link rel="stylesheet" href="../static/lib/prism/prism.css" th:href="@{/lib/prism/prism.css}">
+    <link rel="stylesheet" href="../static/lib/tocbot/tocbot.css" th:href="@{/lib/tocbot/tocbot.css}">
+    <link rel="stylesheet" href="../static/css/diy.css" th:href="@{/css/diy.css}">
+
+</head>
+
+<body>
+    <!-- 导航部分  括号内部传参数  n 为索引值-->
+    <nav th:fragment="menu(n)" class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
+        <div class="ui container">
+            <div class="ui inverted  stackable secondary menu">
+                <h2 class="ui teal header item">AdiTech</h2>
+                <!--  th:classappend 会将后面的属性添加到 css样式中，同时支持条件判断 -->
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==1} ? 'active'"><i
+                        class=" home icon"></i>首页</a>
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==2} ? 'active'"><i
+                        class=" idea icon"></i>分类</a>
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==3} ? 'active'"><i
+                        class=" tag icon"></i>标签</a>
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==4} ? 'active'"><i
+                        class=" clone icon"></i>归档</a>
+                <a href="#" class="m-item item m-mobile-hide" th:classappend="${n==5} ? 'active'"><i
+                        class=" info icon"></i>关于我</a>
+                <div class="right m-item item m-mobile-hide">
+                    <div class="ui icon inverted transparent input">
+                        <input type="text" placeholder="Serach...">
+                        <i class="search link icon"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#" class="ui menu toggle  black icon button m-right-top m-mobile-show">
+            <i class="sidebar icon"></i>
+        </a>
+    </nav>
+
+
+    <!-- 页面底部 -->
+    <footer th:fragment="footer" class="ui inverted vertical segment m-padded-tb-massive">
+        <div class="ui center aligned container">
+            <div class="ui inverted stackable divided grid">
+                <div class="three wide column">
+                    <div class="ui inverted link list">
+                        <div class="item">
+                            <!-- <img src="../static/images/qr.png"  class="ui rounded image" style="width:100px"> -->
+                            <img src="../static/images/qr.png" th:src="@{/images/qr.png}" class="ui rounded image"
+                                style="width:100px">
+                        </div>
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin  m-text-spaced ">最新博客</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">用户故事(user story)</a>
+                        <a href="#" class="item">用户故事(user story)</a>
+                        <a href="#" class="item">用户故事(user story)</a>
+                        <a href="#" class="item">用户故事(user story)</a>
+
+
+                    </div>
+                </div>
+                <div class="three wide column">
+                    <h4 class="ui inverted header m-text-thin  m-text-spaced ">联系我</h4>
+                    <div class="ui inverted link list">
+                        <a href="#" class="item">Email：414213352@qq.com</a>
+                        <a href="#" class="item">QQ：414213352</a>
+
+
+                    </div>
+                </div>
+                <div class="seven wide column">
+                    <h4 class="ui inverted header m-text-thin  m-text-spaced ">Blog介绍</h4>
+                    <p class="m-text-thin  m-text-spaced m-opacity-mini">this is a personal training blog by
+                        AddicatedTech</p>
+                </div>
+            </div>
+            <!-- 底部线 -->
+            <div class="ui inverted sectin divider"></div>
+            <p class="m-text-thin  m-text-spaced m-opacity-tiny">this is a personal training blog by AddicatedTech</p>
+        </div>
+    </footer>
+
+    <th:block th:fragment="script">
+        <!-- jquery must be fist  -->
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+        <script src="../static/js/jquery.scrollTo.min.js" th:src="@{/js/jquery.scrollTo.min.js}"></script>
+        <script src="../static/lib/prism/prism.js" th:src="@{/lib/prism/prism.js}"></script>
+        <script src="../static/lib/tocbot/tocbot.min.js" th:src="@{/lib/tocbot/tocbot.min.js}"></script>
+        <script src="../static/lib/waypoints/jquery.waypoints.min.js"
+            th:src="@{/lib/waypoints/jquery.waypoints.min.js}"></script>
+        <script src="../static/lib/qrcode/qrcode.min.js" th:src="@{/lib/qrcode/qrcode.min.js}"></script>
+        <script src="../static/js/semantic.min.js" th:src="@{/js/semantic.min.js}"></script>
+
+    </th:block>
+
+</body>
+
+</html>
