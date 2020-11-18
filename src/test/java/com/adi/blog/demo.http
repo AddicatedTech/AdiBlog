@@ -1,0 +1,15 @@
+
+
+
+POST http://140.143.4.73:8000/user/birthday HTTP/1.1
+content-type: application/json
+
+{"phone":}
+
+
+# POST https://example.com/comments HTTP/1.1
+
+# {
+#     "name": "sample",
+#     "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+# }

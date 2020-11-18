@@ -4,13 +4,13 @@
  * @Author: Addicated
  * @Date: 2020-11-18 08:41:38
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-18 08:59:59
+ * @LastEditTime: 2020-11-18 13:32:34
  */
 package com.adi.service;
 
 import com.adi.dao.UserRepository;
 import com.adi.po.User;
-
+import com.adi.util.MD5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User checkUser(String username, String password) {
         // 在这里调用由jpa实现的持久层代码
-        User user =  userRepository.findByUsernameAndPassword(username, password);
+        User user =  userRepository.findByUsernameAndPassword(username, MD5Utils.code(password));
         return user;
     }
 
