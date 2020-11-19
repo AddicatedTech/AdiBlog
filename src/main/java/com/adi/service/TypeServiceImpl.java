@@ -4,9 +4,11 @@
  * @Author: Addicated
  * @Date: 2020-11-18 19:46:24
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-19 08:21:57
+ * @LastEditTime: 2020-11-19 17:54:01
  */
 package com.adi.service;
+
+import java.util.List;
 
 import com.adi.NotFoundException;
 import com.adi.dao.TypeRepository;
@@ -66,6 +68,12 @@ public class TypeServiceImpl implements TypeService {
     public Type getTypeByName(String name) {
 
         return typeRepository.findByName(name);
+    }
+
+    @Transactional
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
     }
 
 }

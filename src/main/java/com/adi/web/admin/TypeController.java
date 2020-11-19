@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-18 20:15:44
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-19 09:14:42
+ * @LastEditTime: 2020-11-19 20:19:49
  */
 package com.adi.web.admin;
 
@@ -37,7 +37,6 @@ public class TypeController {
     public String types(@PageableDefault(size = 5, sort = { "id" }, direction = Sort.Direction.ASC) Pageable pageable,
             Model model) {
         // 使用model 将分页查询出来的数据返回到前端
-        // TODO 整理
         model.addAttribute("page", typeService.listType(pageable));
         return "admin/types";
     }
@@ -80,8 +79,9 @@ public class TypeController {
     }
 
     @PostMapping("/types/{id}")
-    public String ditPost(@Valid Type type, BindingResult result,@PathVariable Long id, RedirectAttributes attributes) {
-                            //  bindingResult 一定是要与被验证类的参数是挨着的
+    public String ditPost(@Valid Type type, BindingResult result, @PathVariable Long id,
+            RedirectAttributes attributes) {
+        // bindingResult 一定是要与被验证类的参数是挨着的
         Type t1 = typeService.getTypeByName(type.getName());
 
         if (t1 != null) {
@@ -92,7 +92,7 @@ public class TypeController {
             return "admin/types-input";
         }
 
-        Type t = typeService.updaType(id,type);
+        Type t = typeService.updaType(id, type);
         if (t == null) {
             // 失败的时候给出提示 操作之后吧消息推送到前端页面，，同样前端页面也需要接收
             // <p th:text="${message}">操作成功！</p>
@@ -103,11 +103,12 @@ public class TypeController {
         }
         return "redirect:/admin/types";
     }
+
     // 删除
     @GetMapping("/types/{id}/delete")
-    public String delete(@PathVariable Long id,RedirectAttributes attributes){
+    public String delete(@PathVariable Long id, RedirectAttributes attributes) {
         typeService.deleteType(id);
-        attributes.addFlashAttribute("message","删除成功");
+        attributes.addFlashAttribute("message", "删除成功");
         return "redirect:/admin/types";
 
     }

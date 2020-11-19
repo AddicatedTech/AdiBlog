@@ -8,6 +8,8 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true  # 打印sql语句
+  resources:
+    static-locations: classpath:/static/
 
 logging:
   level: 

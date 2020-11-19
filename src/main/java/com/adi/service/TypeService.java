@@ -4,9 +4,11 @@
  * @Author: Addicated
  * @Date: 2020-11-18 19:41:28
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-19 08:20:21
+ * @LastEditTime: 2020-11-19 17:48:26
  */
 package com.adi.service;
+
+import java.util.List;
 
 import com.adi.po.Type;
 
@@ -22,6 +24,8 @@ public interface TypeService {
     // 参数应该是一个可以进行分页的对象
     // Springboot使用分页查询要使用page进行声明实体类型
     Page<Type> listType(Pageable pageable);
+
+    List<Type> listType();
 
     Type getTypeByName(String name);
 
