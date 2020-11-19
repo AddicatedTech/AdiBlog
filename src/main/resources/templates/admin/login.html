@@ -4,30 +4,24 @@
  * @Author: Addicated
  * @Date: 2020-11-17 20:43:34
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-18 11:32:47
+ * @LastEditTime: 2020-11-18 19:06:41
 -->
 <!DOCTYPE html>
-<!-- saved from url=(0093)# -->
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
 <head th:replace="admin/_fragments :: head(~{::title})">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客管理登录</title>
     <link rel="stylesheet prefetch"
         href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
     <link rel="stylesheet" href="../../static/css/semantic.min.css">
     <link rel="stylesheet" href="../../static/css/diy.css">
-
 </head>
-
 <body>
     <br>
     <br>
     <br>
     <br>
-
     <div class="m-container-small m-padded-tb-large" style="max-width: 30em !important;">
         <div class="ui container">
             <div class="column">
@@ -53,24 +47,13 @@
                         </div>
                         <button class="ui fluid large teal submit button">登 录</button>
                     </div>
-
                     <div class="ui error mini message"></div>
                     <div class="ui mini negative message" th:unless="${#strings.isEmpty(message)}" th:text="${message}">用户名或密码错误</div>
                 </form>
-
-
             </div>
         </div>
-
     </div>
-
-
-
-
-
-
-    <th:block th:replace="_fragments :: script">
-    </th:block>
+    <th:block th:replace="_fragments :: script"></th:block>
     <script>
         $('.ui.form').form({
             fields: {

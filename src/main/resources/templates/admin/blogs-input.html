@@ -1,54 +1,29 @@
 <!DOCTYPE html>
 <!-- saved from url=(0093)# -->
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 
-<head>
+<head th:replace="admin/_fragments :: head(~{::title})">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>博客发布</title>
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css"> -->
-    <link rel="stylesheet prefetch"
-        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css">
+    <!-- <link rel="stylesheet prefetch"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/components/icon.min.css"> -->
     <!-- <link rel="stylesheet" href=".../static/lib/editormd/css/editormd.min.css">
     <link rel="stylesheet" href=".../static/css/semantic.min.css">
     <link rel="stylesheet" href=".../static/css/diy.css"> -->
-
+<!-- 
     <link rel="stylesheet" href="../../static/lib/editormd/css/editormd.min.css">
     <link rel="stylesheet" href="../../static/css/semantic.min.css">
-    <link rel="stylesheet" href="../../static/css/diy.css">
+    <link rel="stylesheet" href="../../static/css/diy.css"> -->
 
 
-    
+
 </head>
-
 <body>
     <!-- 导航   inverted 反转的意思-->
-    <nav class="ui inverted attached segment m-padded-tb-mini m-shadow-small">
-        <div class="ui container">
-            <div class="ui inverted  stackable secondary menu">
-                <h2 class="ui teal header item">管理后台</h2>
-                <a href="#" class="active m-item item m-mobile-hide"><i class=" home icon"></i>博客</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class=" idea icon"></i>分类</a>
-                <a href="#" class="m-item item m-mobile-hide"><i class=" tag icon"></i>标签</a>
-                <div class="right m-item m-mobile-hide menu">
-                    <div class=" ui dropdown  item">
-                        <div class="text">
-                            <img class="ui avatar image" src="https://picsum.photos/100/100?image=1005">
-                            Addicated
-                        </div>
-                        <i class="dropdown icon"></i>
-                        <div class="menu">
-                            <a href="#" class="item">注销</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <a href="#" class="ui menu toggle  black icon button m-right-top m-mobile-show">
-            <i class="sidebar icon"></i>
-        </a>
-    </nav>
+    <nav th:replace="admin/_fragments  :: menu(2)"></nav>
     <!-- 二级导航 面包屑 -->
     <div class="ui attached pointing menu">
         <div class="ui container">
@@ -58,9 +33,6 @@
             </div>
         </div>
     </div>
-
-
-
     <!-- 中间内容 -->
     <div class="m-container-small m-padded-tb-big">
         <div class="ui container">
@@ -100,7 +72,6 @@
 
                     </div>
                 </div>
-
                 <div class="two fields">
                     <div class="field">
                         <div class="ui left labeled action input">
@@ -112,7 +83,6 @@
                                 <div class="menu">
                                     <div class="item" data-value="1">错误日志</div>
                                     <div class="item" data-value="2">开发手册</div>
-
                                 </div>
                             </div>
                         </div>
@@ -127,7 +97,6 @@
                                 <div class="menu">
                                     <div class="item" data-value="1">java</div>
                                     <div class="item" data-value="2">js</div>
-
                                 </div>
                             </div>
                         </div>
@@ -137,12 +106,8 @@
                     <div class="ui left compact labeled input">
                         <label class="ui teal basic label">首图</label>
                         <input type="text" name="indexPicture" placeholder="首图引用地址">
-
                     </div>
                 </div>
-
-
-
                 <div class="inline fields">
                     <div class="field">
                         <div class="ui checkbox">
@@ -171,9 +136,6 @@
                 </div>
                 <!-- 错误信息显示 -->
                 <div class="ui error message"></div>
-
-
-
                 <div class="ui right aligned container">
                     <button type="button" class="ui button" onclick="windows.history.go(-1)">返回</button>
                     <button class="ui secondary button">保存</button>
@@ -183,53 +145,15 @@
         </div>
     </div>
     <!-- 底部 -->
-    <footer class="ui inverted vertical segment m-padded-tb-massive">
-        <div class="ui center aligned container">
-            <div class="ui inverted stackable divided grid">
-                <div class="three wide column">
-                    <div class="ui inverted link list">
-                        <div class="item">
-                            <img src="../../static/images/qr.png" class="ui rounded image" style="width:100px">
-                        </div>
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header m-text-thin  m-text-spaced ">最新博客</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">用户故事(user story)</a>
-                        <a href="#" class="item">用户故事(user story)</a>
-                        <a href="#" class="item">用户故事(user story)</a>
-                        <a href="#" class="item">用户故事(user story)</a>
+    <footer th:replace="admin/_fragments  :: footer"></footer>
+    <th:block th:replace="_fragments :: script"></th:block>
 
-
-                    </div>
-                </div>
-                <div class="three wide column">
-                    <h4 class="ui inverted header m-text-thin  m-text-spaced ">联系我</h4>
-                    <div class="ui inverted link list">
-                        <a href="#" class="item">Email：414213352@qq.com</a>
-                        <a href="#" class="item">QQ：414213352</a>
-
-
-                    </div>
-                </div>
-                <div class="seven wide column">
-                    <h4 class="ui inverted header m-text-thin  m-text-spaced ">Blog介绍</h4>
-                    <p class="m-text-thin  m-text-spaced m-opacity-mini">this is a personal training blog by
-                        AddicatedTech</p>
-                </div>
-            </div>
-            <!-- 底部线 -->
-            <div class="ui inverted sectin divider"></div>
-            <p class="m-text-thin  m-text-spaced m-opacity-tiny">this is a personal training blog by AddicatedTech</p>
-        </div>
-    </footer>
     <!-- 加载顺序的问题 semantic 对外依赖jquery 所以要先加载jquery  -->
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <!-- <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script> -->
     <!-- <script src=".../static/lib/editormd/editormd.min.js"></script>
     <script src=".../static/js/semantic.min.js"></script> -->
-    <script src="../../static/js/semantic.min.js"></script>
-    <script src="../../static/lib/editormd/editormd.min.js"></script>
+    <!-- <script src="../../static/js/semantic.min.js"></script> -->
+    <!-- <script src="../../static/lib/editormd/editormd.min.js"></script> -->
     <script>
         var contentEditor;
 
