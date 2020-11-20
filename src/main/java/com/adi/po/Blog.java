@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-17 16:07:56
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-17 19:27:45
+ * @LastEditTime: 2020-11-20 09:57:21
  */
 package com.adi.po;
 
@@ -12,16 +12,20 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 @Entity // 被hibernate所识别为实体类
 @Table(name = "t_blog") // 指定对应的表名 不进行指定的话会直接生成与实体类相同的表
@@ -32,8 +36,11 @@ public class Blog {
     private Long id;
 
     private String title;
+    @Basic(fetch = FetchType.LAZY)  // 设置加载类型为懒加载，用到的时候才加载，提高查询效率
+    @Lob  // 标记为长文本
     private String content; // 内容
-    private String fistPicture; // 首图
+    
+    private String firstPicture; // 首图
     private String flag;
     private Integer views; // 阅读量
     private boolean appreciation; // 赞赏是否开启
@@ -45,6 +52,9 @@ public class Blog {
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
+    
+    @Transient  // 添加之后该属性不会涉及到数据库的操作
+    private String tagIds;  // 标签集
 
     // blog 对 type 是多对一的关系,即，blog在关系中是多的一段，
     // 多的一方作为维护端
@@ -87,13 +97,7 @@ public class Blog {
         this.content = content;
     }
 
-    public String getFistPicture() {
-        return fistPicture;
-    }
-
-    public void setFistPicture(String fistPicture) {
-        this.fistPicture = fistPicture;
-    }
+ 
 
     public String getFlag() {
         return flag;
@@ -173,7 +177,7 @@ public class Blog {
     @Override
     public String toString() {
         return "Blog [appreciation=" + appreciation + ", commentabled=" + commentabled + ", content=" + content
-                + ", createTime=" + createTime + ", fistPicture=" + fistPicture + ", flag=" + flag + ", id=" + id
+                + ", createTime=" + createTime + ", firstPicture=" + firstPicture + ", flag=" + flag + ", id=" + id
                 + ", published=" + published + ", recommend=" + recommend + ", shareStatement=" + shareStatement
                 + ", title=" + title + ", updateTime=" + updateTime + ", views=" + views + "]";
     }
@@ -198,16 +202,32 @@ public class Blog {
         return user;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     public List<Comment> getComments() {
         return comments;
     }
 
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getTagIds() {
+        return tagIds;
+    }
+
+    public void setTagIds(String tagIds) {
+        this.tagIds = tagIds;
+    }
+
+    public String getFirstPicture() {
+        return firstPicture;
+    }
+
+    public void setFirstPicture(String firstPicture) {
+        this.firstPicture = firstPicture;
     }
 
 }

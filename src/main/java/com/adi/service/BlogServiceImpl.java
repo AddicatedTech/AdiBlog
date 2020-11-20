@@ -4,18 +4,19 @@
  * @Author: Addicated
  * @Date: 2020-11-19 14:02:41
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-19 21:15:55
+ * @LastEditTime: 2020-11-20 07:14:57
  */
 package com.adi.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.adi.NotFoundException;
 import com.adi.dao.BlogRepository;
 import com.adi.po.Blog;
@@ -81,7 +82,12 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    @Transactional
     public Blog saveBlog(Blog blog) {
+        blog.setCreateTime(new Date());  // 初始化新增时间
+        blog.setUpdateTime(new Date());  // 初始化更新时间
+        blog.setViews(0);  // 初始化新增浏览数0
+
         return blogRepository.save(blog);
     }
 
@@ -96,6 +102,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
+    @Transactional
     public void deleteBlog(Long id) {
         blogRepository.deleteById(id);
     }

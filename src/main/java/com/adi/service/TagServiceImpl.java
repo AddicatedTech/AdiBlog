@@ -4,10 +4,12 @@
  * @Author: Addicated
  * @Date: 2020-11-19 10:01:32
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-19 10:07:54
+ * @LastEditTime: 2020-11-20 07:10:16
  */
 package com.adi.service;
 
+import java.util.ArrayList;
+import java.util.List;
 
 import com.adi.NotFoundException;
 import com.adi.dao.TagRepository;
@@ -19,7 +21,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 @Service
 public class TagServiceImpl implements TagService {
@@ -54,8 +55,8 @@ public class TagServiceImpl implements TagService {
     @Override
     @Transactional
     public Tag updateTag(Long id, Tag tag) {
-        Tag t  = tagRepository.getOne(id);
-        if(t == null){
+        Tag t = tagRepository.getOne(id);
+        if (t == null) {
             throw new NotFoundException("不存在该tag");
         }
         BeanUtils.copyProperties(tag, t);
@@ -67,6 +68,29 @@ public class TagServiceImpl implements TagService {
     public void deleteTag(Long id) {
         tagRepository.deleteById(id);
     }
+
+    @Override
+    public List<Tag> listTag() {
+        
+        return tagRepository.findAll();
+    }
+
+    @Override
+    public List<Tag> listTag(String ids) {  // 1,2,3
+
+        return tagRepository.findAllById(convertToList(ids));
+    }
+    private List<Long> convertToList(String ids) {  //把前端的tagIds字符串转换为list集合
+        List<Long> list = new ArrayList<>();
+        if (!"".equals(ids) && ids != null) {
+            String[] idarray = ids.split(",");
+            for (int i=0; i < idarray.length;i++) {
+                list.add(new Long(idarray[i]));
+            }
+        }
+        return list;
+    }
+
 
 
 }

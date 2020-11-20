@@ -4,11 +4,13 @@
  * @Author: Addicated
  * @Date: 2020-11-19 20:01:26
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-19 20:15:20
+ * @LastEditTime: 2020-11-20 09:01:30
  */
 package com.adi.vo;
 
-public class BlogQuery {
+import com.adi.po.Blog;
+
+public class BlogQuery extends Blog {
     
     private String title;
     private Long typeId;
