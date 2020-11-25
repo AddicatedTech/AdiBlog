@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-17 16:07:56
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-20 09:57:21
+ * @LastEditTime: 2020-11-20 11:22:31
  */
 package com.adi.po;
 
@@ -36,10 +36,10 @@ public class Blog {
     private Long id;
 
     private String title;
-    @Basic(fetch = FetchType.LAZY)  // 设置加载类型为懒加载，用到的时候才加载，提高查询效率
-    @Lob  // 标记为长文本
+    @Basic(fetch = FetchType.LAZY) // 设置加载类型为懒加载，用到的时候才加载，提高查询效率
+    @Lob // 标记为长文本
     private String content; // 内容
-    
+
     private String firstPicture; // 首图
     private String flag;
     private Integer views; // 阅读量
@@ -52,9 +52,9 @@ public class Blog {
     private Date createTime;
     @Temporal(TemporalType.TIMESTAMP)
     private Date updateTime;
-    
-    @Transient  // 添加之后该属性不会涉及到数据库的操作
-    private String tagIds;  // 标签集
+
+    @Transient // 添加之后该属性不会涉及到数据库的操作
+    private String tagIds; // 标签集
 
     // blog 对 type 是多对一的关系,即，blog在关系中是多的一段，
     // 多的一方作为维护端
@@ -62,16 +62,14 @@ public class Blog {
     @ManyToOne
     private Type type;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})  // 新增加一个tag 同时会级联新增给tag表中添加tag信息
+    @ManyToMany(cascade = { CascadeType.PERSIST }) // 新增加一个tag 同时会级联新增给tag表中添加tag信息
     private List<Tag> tags = new ArrayList<>();
-
 
     @ManyToOne
     private User user;
 
     @OneToMany(mappedBy = "blog")
     private List<Comment> comments = new ArrayList<>();
-
 
     public Long getId() {
         return id;
@@ -96,8 +94,6 @@ public class Blog {
     public void setContent(String content) {
         this.content = content;
     }
-
- 
 
     public String getFlag() {
         return flag;
@@ -172,6 +168,28 @@ public class Blog {
     }
 
     public Blog() {
+    }
+
+    public void init() {
+        this.tagIds = tagsToIds(this.getTags());
+    }
+
+    private String tagsToIds(List<Tag> tags) {
+        if (!tags.isEmpty()) {
+            StringBuffer ids = new StringBuffer();
+            boolean flag = false;
+            for (Tag tag : tags) {
+                if (flag) {
+                    ids.append(",");
+                } else {
+                    flag = true;
+                }
+                ids.append(tag.getId());
+            }
+            return ids.toString();
+        } else {
+            return tagIds;
+        }
     }
 
     @Override

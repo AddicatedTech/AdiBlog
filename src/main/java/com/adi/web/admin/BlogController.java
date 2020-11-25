@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-18 13:59:00
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-20 10:13:36
+ * @LastEditTime: 2020-11-24 23:15:34
  */
 package com.adi.web.admin;
 
@@ -23,6 +23,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,6 +73,21 @@ public class BlogController {
         model.addAttribute("tags", tagService.listTag()); // 初始化标签信息
         model.addAttribute("blog", new Blog()); // 初始化博客信息
 
+        return INPUT;
+    }
+
+ 
+
+    //  编辑博客
+    @GetMapping("/blogs/{id}/input")
+    public String editInput(@PathVariable Long id ,Model model) {
+        model.addAttribute("types", typeService.listType()); // 初始化分类信息
+        model.addAttribute("tags", tagService.listTag()); // 初始化标签信息
+
+
+        Blog blog = blogService.getBlog(id);
+        blog.init();
+        model.addAttribute("blog", blog); // 初始化博客信息
         return INPUT;
     }
 
