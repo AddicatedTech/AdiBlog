@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-19 14:02:41
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-20 11:37:14
+ * @LastEditTime: 2020-11-26 08:24:00
  */
 package com.adi.service;
 
@@ -21,6 +21,7 @@ import com.adi.NotFoundException;
 import com.adi.dao.BlogRepository;
 import com.adi.po.Blog;
 import com.adi.po.Type;
+import com.adi.util.MyBeanUtils;
 import com.adi.vo.BlogQuery;
 
 import org.springframework.beans.BeanUtils;
@@ -107,7 +108,8 @@ public class BlogServiceImpl implements BlogService {
         if (b == null) {
             throw new NotFoundException("不存在该blog");
         }
-        BeanUtils.copyProperties(blog, b);
+        BeanUtils.copyProperties(blog, b,MyBeanUtils.getNullPropertyNames(blog));
+        b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
 

@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-17 16:07:56
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-20 11:22:31
+ * @LastEditTime: 2020-11-25 22:24:05
  */
 package com.adi.po;
 
@@ -55,6 +55,9 @@ public class Blog {
 
     @Transient // 添加之后该属性不会涉及到数据库的操作
     private String tagIds; // 标签集
+
+    private String description; //博客描述
+
 
     // blog 对 type 是多对一的关系,即，blog在关系中是多的一段，
     // 多的一方作为维护端
@@ -192,13 +195,7 @@ public class Blog {
         }
     }
 
-    @Override
-    public String toString() {
-        return "Blog [appreciation=" + appreciation + ", commentabled=" + commentabled + ", content=" + content
-                + ", createTime=" + createTime + ", firstPicture=" + firstPicture + ", flag=" + flag + ", id=" + id
-                + ", published=" + published + ", recommend=" + recommend + ", shareStatement=" + shareStatement
-                + ", title=" + title + ", updateTime=" + updateTime + ", views=" + views + "]";
-    }
+ 
 
     public Type getType() {
         return type;
@@ -246,6 +243,24 @@ public class Blog {
 
     public void setFirstPicture(String firstPicture) {
         this.firstPicture = firstPicture;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Blog [appreciation=" + appreciation + ", commentabled=" + commentabled + ", comments=" + comments
+                + ", content=" + content + ", createTime=" + createTime + ", description=" + description
+                + ", firstPicture=" + firstPicture + ", flag=" + flag + ", id=" + id + ", published=" + published
+                + ", recommend=" + recommend + ", shareStatement=" + shareStatement + ", tagIds=" + tagIds + ", tags="
+                + tags + ", title=" + title + ", type=" + type + ", updateTime=" + updateTime + ", user=" + user
+                + ", views=" + views + "]";
     }
 
 }

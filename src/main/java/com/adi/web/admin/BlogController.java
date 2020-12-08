@@ -4,7 +4,7 @@
  * @Author: Addicated
  * @Date: 2020-11-18 13:59:00
  * @LastEditors: Addicated
- * @LastEditTime: 2020-11-24 23:15:34
+ * @LastEditTime: 2020-11-26 08:14:04
  */
 package com.adi.web.admin;
 
@@ -110,4 +110,14 @@ public class BlogController {
 
         return REDIRECT_LIST; // 提交成功返回博客列表页面
     }
+
+    // 删除博客
+    @GetMapping("/blogs/{id}/delete")
+    public String delete(@PathVariable Long id, RedirectAttributes attributes) {
+        blogService.deleteBlog(id);
+        attributes.addFlashAttribute("message", "删除成功");
+        return REDIRECT_LIST; // 提交成功返回博客列表页面
+
+    }
+
 }
